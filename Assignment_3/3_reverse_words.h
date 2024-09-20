@@ -1,44 +1,41 @@
 #ifndef REVWORDS_H
-#define REVWORDS_H 0 
+#define REVWORDS_H 0
 
-/* reverse_substring(s, start, end) function takes a string s, and two
-   integer indices start and end identifying the start and end of a
-   substring of s.
-
-   The function may assume that start and end are both valid indices 
-   into the string. 
-*/
-
+/*
+ * The reverse_substring function takes a character array 'str',
+ * along with two indices 'start' and 'end'. It reverses the characters
+ * between these two indices (inclusive).
+ *
+ * Precondition: Both 'start' and 'end' are valid positions within the array.
+ */
 extern void reverse_substring(char str[], int start, int end);
 
-/* find_word_start(s, len, i) takes a string s of length len, and 
-   an index i (which must be strictly less than len). 
-
-   It then returns the index k which is the starting position of
-   the next word beginning at position i or later. 
-
-   If no such index exists, then it should return -1. 
-
-*/
-
+/*
+ * The find_next_start function scans the string 'str' of length 'len' starting
+ * from index 'i'. It looks for the next alphabetic character, marking the 
+ * beginning of the next word. Returns the index of this character, or -1 if no
+ * such word exists.
+ *
+ * Precondition: i < len.
+ */
 extern int find_next_start(char str[], int len, int i);
 
-/* find_word_end(s, len, i) takes a string s of length len, and 
-   an index i (which must be strictly less than len). 
-
-   It returns the first index k past the end of the word starting
-   at i. 
-*/
-
+/*
+ * The find_next_end function scans the string 'str' of length 'len' starting 
+ * from index 'i'. It finds the first non-alphabetic character after the start
+ * of a word, returning its index. This index is considered to be just after 
+ * the end of the current word.
+ *
+ * Precondition: i < len.
+ */
 extern int find_next_end(char str[], int len, int i);
 
-/* reverse_words(s) takes a string s, and reverses all of the
-   words in it. 
-
-   Here, a "word" is defined as a contiguous sequence of alphabetic
-   characters.
-*/
-
+/*
+ * The reverse_words function takes a character array 'str', and reverses the 
+ * letters of every word in the array. Words are defined as sequences of 
+ * alphabetic characters that are delimited by non-alphabetic characters.
+ */
 extern void reverse_words(char s[]);
 
 #endif /* REVWORDS_H */
+
