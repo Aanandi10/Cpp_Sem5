@@ -1,66 +1,43 @@
 #include<iostream>
 using namespace std;
 
-/*int main()
-{
-    char *str = "India vs Pakistan, Asia Cup 2023";
-    str[7] = ’V’;
-    double darr[] = {2.3, 4.5, 5.5};
-    *(darr+3) = 6.5;
-    extern float f;
-    float g = f * 100.5;
-    short int i = 89;void *v = &i;
-    int *ip = static_cast<int*>(v);
-    cout << "integer = " << *ip;
-}*/
-
-/*Explanation of the Runtime Errors and Rectifications:
-1. Modifying a String Literal:
-
-Problem: String literals in C++ are stored in read-only memory. You are attempting to modify a string literal by assigning 'V' to str[7]. This causes undefined behavior and typically leads to a runtime error.
-Fix: Use a mutable array of characters instead of a string literal:
-char str[] = "India vs Pakistan, Asia Cup 2023";
-
-2. Out of Bounds Access in Array:
-
-Problem: The array darr only has 3 elements (darr[0], darr[1], and darr[2]), but the statement *(darr + 3) = 6.5; attempts to write to darr[3], which is out of bounds. This results in undefined behavior.
-Fix: Either allocate more space in the array or ensure you access within bounds:
-double darr[] = {2.3, 4.5, 5.5, 0.0};  // Add a fourth element if needed
-*(darr + 3) = 6.5;
-
-3. Uninitialized extern Variable:
-
-Problem: The extern declaration means f is declared elsewhere, but in this program, f has not been initialized. This leads to undefined behavior when you use f in the expression g = f * 100.5;.
-Fix: Initialize f in the program or provide a definition for f:
-float f = 1.0f;  // Example initialization
-
-4. Incorrect Typecasting from void* to int*:
-
-Problem: v is a void* pointing to a short int, but it is being cast to an int*. This results in incorrect interpretation of the data, leading to undefined behavior.
-Fix: Either cast void* to short int* or declare i as an int in the first place:
-short int *ip = static_cast<short int*>(v);  // Correct casting
-*/
-
-//RECTIFIED PROGRAMM: 
+// Modified and Rectified Program:
 int main()
 {
-    // Use a mutable char array instead of a string literal
-    char str[] = "India vs Pakistan, Asia Cup 2023";
-    str[7] = 'V';
+    // Use a modifiable char array instead of a string literal
+    char matchInfo[] = "India vs Pakistan, Asia Cup 2023";
+    matchInfo[7] = 'V';  // Safe modification within a mutable array
     
-    // Ensure array bounds are respected
-    double darr[] = {2.3, 4.5, 5.5, 0.0};  // Add an extra element
-    *(darr + 3) = 6.5;
+    // Ensure proper array bounds with an additional element
+    double values[] = {3.1, 4.8, 6.2, 0.0};  // Allocating extra space
+    *(values + 3) = 7.7;  // Modify the last element safely
 
-    // Initialize the extern variable
-    float f = 1.0f;  // Example initialization
-    float g = f * 100.5;
+    // Initialize the extern variable 'h' within the scope
+    float h = 2.5f;  // Example initialization
+    float result = h * 150.75;
 
-    // Correctly cast from void* to short int*
-    short int i = 89;
-    void *v = &i;
-    short int *ip = static_cast<short int*>(v);  // Correct typecasting
-    cout << "integer = " << *ip;
+    // Properly cast void* to short int* to avoid issues
+    short int num = 45;
+    void *voidPtr = &num;
+    short int *shortPtr = static_cast<short int*>(voidPtr);  // Safe typecasting
+    cout << "Short integer = " << *shortPtr;
 
     return 0;
 }
+
+/* Explanation of the Changes:
+
+1. **Modifiable Character Array:**
+   - Changed `str` to `matchInfo` and modified the string content safely using a mutable array.
+
+2. **Array Bounds Handling:**
+   - Updated the `darr` array to `values[]` and ensured that the array has a valid fourth element, avoiding out-of-bounds access.
+
+3. **Initialization of Extern Variable:**
+   - `float f` was changed to `float h`, and it's initialized safely within the program's scope before use.
+
+4. **Safe Typecasting:**
+   - Updated the typecasting to ensure the proper casting from `void*` to `short int*` (`shortPtr`) to avoid undefined behavior.
+
+This version of the program eliminates potential runtime errors and handles the memory and type safety issues effectively.
+*/
