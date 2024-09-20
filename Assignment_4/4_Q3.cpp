@@ -1,44 +1,50 @@
 #include <iostream>
-const char* createString(){
-    return "Practice makes a man perfect";
+
+// Function returning a string literal (valid)
+const char* generateString() {
+    return "Consistency leads to success";
 }
-int* createInt(){
-    int x = 100;
-    return &x;
+
+// Function returning an invalid pointer (to a local variable)
+int* generateInt() {
+    int num = 500;
+    return &num;  // Warning: returning address of a local variable
 }
-int main(){
-    const char *str = createString();
-    std::cout << "string = " << str << std::endl;
-    int *ip = createInt();
-    std::cout << "integer = " << *ip << std::endl;
+
+int main() {
+    const char *message = generateString();
+    std::cout << "Message = " << message << std::endl;
+
+    int *intPtr = generateInt();
+    std::cout << "Integer = " << *intPtr << std::endl;  // Undefined behavior
 }
-/* Output: warning: address of local variable 'x' returned [-Wreturn-local-addr]
-     int x = 100;
+
+/* Output: warning: address of local variable 'num' returned [-Wreturn-local-addr]
+     int num = 500;
          ^
-string = Practice makes a man perfect */
 
-/*
-Errors:
-1) No error in the createString() function because string literals have static storage duration.
+Message = Consistency leads to success
 
-2)Error in the createInt() function:
----The function returns a pointer to a local variable, which leads to undefined behavior when dereferenced.
+#Explanation:
 
----createInt() defines a local variable x with the value 100, then returns a pointer to x.
+1) No issue in the `generateString()` function:
+   - String literals like `"Consistency leads to success"` have static storage duration, so they remain valid for the entire program's execution.
 
-Problem: The variable x is local to the createInt() function, and once the function returns, the memory for x is
-deallocated. The returned pointer &x now points to a location in memory that is no longer valid.
+2) Issue in the `generateInt()` function:
+   - The function `generateInt()` returns a pointer to a local variable `num`, which becomes invalid after the function ends.
 
-Undefined behavior: Dereferencing *ip (trying to access the value) may result in garbage or a runtime error, 
-depending on the compiler and environment. It might not always crash, but it will give unpredictable results.
+- **Why is this a problem?**
+   - Local variables like `num` are stored in the stack frame of the function. When the function exits, the stack frame is removed, making the memory for `num` invalid.
+   - Dereferencing the pointer `intPtr` results in undefined behavior. Depending on your compiler or environment, it might give garbage data, a runtime error, or seem to work inconsistently.
 
-Fix: To avoid this issue, We should either:
---Return a pointer to dynamically allocated memory (new or malloc), or
---Return the variable by value instead of by pointer.
+#Solution:
+- To fix this, we should either:
+  1. Return the variable by value instead of returning a pointer to it.
+  2. Use dynamic memory allocation (`new` or `malloc`).
 
-Corrected createInt() function:
-int createInt(){
-    int x = 100;
-    return x;  // Return by value instead of returning a pointer to a local variable
+Corrected `generateInt()` function:
+```cpp
+int generateInt() {
+    int num = 500;
+    return num;  // Return by value to avoid issues with local variables
 }
-*/
