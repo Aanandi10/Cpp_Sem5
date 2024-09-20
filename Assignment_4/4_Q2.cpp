@@ -1,37 +1,36 @@
 #include <iostream>
+
 int main()
 {
-    const char* str1 = "We love C++ programming\n";
-    char str2[100];
-    char *p = str2; /*name of an array is implicitly converted to pointer to the first element.*/
-    while(*p++ = *str1++){}
-    std::cout << str2;
+    const char* sourceStr = "C++ programming is fun!\n";
+    char destinationStr[100];
+    char* destPtr = destinationStr;  // Array name decays to a pointer to the first element
+    while(*destPtr++ = *sourceStr++) {}  // Copy each character from source to destination
+    std::cout << destinationStr;
 }
+
 /*
-The output of the program is: We love C++ programming
+The output of the program is: C++ programming is fun!
 
-#Detailed Explanation:
+#Explanation:
 
-1. **String Initialization:**
-   const char* str1 = "We love C++ programming\n";
-   - `str1` points to a string literal `"We love C++ programming\n"`, stored in read-only memory. It points to the first character `'W'`.
+1. **Pointer to String:**
+   const char* sourceStr = "C++ programming is fun!\n";
+   - `sourceStr` is a pointer to a string literal stored in read-only memory. It points to the first character, `'C'`, in the string `"C++ programming is fun!\n"`.
 
-2. **Array Declaration:**
-   char str2[100];
-   - `str2` is an array of 100 characters. It will store the copy of the string from `str1`.
+2. **Character Array Declaration:**
+   char destinationStr[100];
+   - `destinationStr` is an array of 100 characters, which will store the copied version of the string.
 
 3. **Pointer Initialization:**
-   char *p = str2;
-   - `p` is a pointer that points to the first element of `str2`. The name of the array `str2` is implicitly converted to a pointer to its first element, i.e., `p` now points to `str2[0]`.
+   char* destPtr = destinationStr;
+   - `destPtr` points to the first element of `destinationStr`. The array name `destinationStr` decays into a pointer to its first element, meaning `destPtr` now references `destinationStr[0]`.
 
-4. **String Copying (Key Loop):**
-   while(*p++ = *str1++){}
-   - This loop copies each character from `str1` to `str2`. It works as follows:
-     - `*str1` refers to the current character in `str1` and `*p` refers to the current position in `str2`.
-     - `*p++ = *str1++`:
-       - The current character from `str1` is assigned to `*p` in `str2`.
-       - Then, both pointers `p` and `str1` are incremented (post-increment) to point to the next characters in their respective arrays.
-     - This process continues until the null character (`'\0'`) is encountered in `str1`. When the null terminator is copied, the loop terminates.
-
-
+4. **Character Copying (Loop):**
+   while(*destPtr++ = *sourceStr++) {}
+   - This loop copies characters one by one from `sourceStr` to `destinationStr`:
+     - `*sourceStr` refers to the current character in the string, and `*destPtr` refers to the current position in the destination array.
+     - `*destPtr++ = *sourceStr++` copies the character from `sourceStr` to `destinationStr`, then both pointers increment to the next character.
+     - The loop continues until the null terminator (`'\0'`) is copied, at which point the loop stops.
 */
+
