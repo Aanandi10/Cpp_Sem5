@@ -7,7 +7,7 @@
 using namespace std;
 
 int main() {
-    char str[] = "University of Cambridge!";
+    char str[] = "University of Stolkholm!";
     reverse_words(str);
     cout << str << endl;
     return 0;
