@@ -1,39 +1,40 @@
-#include<iostream>
-int main(){
+#include <iostream>
 
-//Here are the required declarations with initialization:
+int main() {
 
-//Pointer to a character:
-   char ch = 'A';
-   char* ptrToChar = &ch;
+// Declare and initialize the required variables:
 
-//Array of 10 integers:**
-   int arr[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+// Character and pointer to the character:
+   char character = 'B';
+   char* charPtr = &character;
 
-//Reference to an array of 10 integers:**
-   int (&refToArray)[10] = arr;
+// Array of 10 integers:
+   int numbers[10] = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
 
-//Pointer to an array of character strings:**
-   const char* strArray[] = {"Hello", "World", "C++"};
-   const char** ptrToStrArray = strArray;
+// Reference to the array of 10 integers:
+   int (&arrayRef)[10] = numbers;
 
-//Pointer to a pointer to a character:**
-   char* ptrToChar2 = &ch;
-   char** ptrToPtrToChar = &ptrToChar2;
+// Pointer to an array of strings (const char* array):
+   const char* messages[] = {"Welcome", "to", "C++"};
+   const char** msgArrayPtr = messages;
 
-//Constant integer:**
-   const int constInt = 42;
+// Pointer to a pointer to a character:
+   char* anotherCharPtr = &character;
+   char** doubleCharPtr = &anotherCharPtr;
 
-//Pointer to a constant integer:**
-   const int* ptrToConstInt = &constInt;
+// Constant integer:
+   const int fixedValue = 100;
 
-//Constant pointer to an integer:**
-   int num = 10;
-   int* const constPtrToInt = &num;
+// Pointer to a constant integer:
+   const int* ptrToFixedValue = &fixedValue;
 
-//Constant pointer to a constant double:**
-   const double constDouble = 3.14;
-   const double* const constPtrToConstDouble = &constDouble;
+// Constant pointer to a non-constant integer:
+   int variable = 25;
+   int* const constantPtrToVariable = &variable;
 
-//Each variable is initialized with appropriate values or references.
+// Constant pointer to a constant double:
+   const double pi = 3.14159;
+   const double* const constantPtrToConstDouble = &pi;
+
+// The variables are initialized properly with values or references.
 }
