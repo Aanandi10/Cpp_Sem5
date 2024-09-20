@@ -1,21 +1,30 @@
 #include <iostream>
 using namespace std;
-void swap(int* a, int* b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+
+// Function to swap two integers using pointers
+void exchange(int* first, int* second) {
+    int tempVar = *first;
+    *first = *second;
+    *second = tempVar;
 }
 
 int main() {
-    int x,y;
-    cout<<"Enter The First Integer: ";
-    cin>>x;
-    cout<<"Enter The Second Integer: ";
-    cin>>y; 
-    cout << "Before swap: x = " << x << ", y = " << y <<endl;
+    int num1, num2;
+
+    // Taking input from the user
+    cout << "Enter the first number: ";
+    cin >> num1;
+    cout << "Enter the second number: ";
+    cin >> num2;
+
+    // Display numbers before the swap
+    cout << "Before exchange: num1 = " << num1 << ", num2 = " << num2 << endl;
     
-    swap(&x, &y);  // Pass addresses of x and y
+    // Call the swap function
+    exchange(&num1, &num2);  // Pass the addresses of num1 and num2
     
-    cout << "After swap: x = " << x << ", y = " << y <<endl;
+    // Display numbers after the swap
+    cout << "After exchange: num1 = " << num1 << ", num2 = " << num2 << endl;
+
     return 0;
 }
