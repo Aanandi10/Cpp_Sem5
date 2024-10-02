@@ -54,13 +54,6 @@ void reverse_words(char ss[])
        }
 }
 
-// The main function 
-int main() 
-{
-    char ss[] = "University of Cambridge!";
-    reverse_words(ss);
-    std::cout << ss << std::endl;  // The desired output is "ytisrevinU fo egdirbmaC!"
-    return 0;
-}
+
 
  
