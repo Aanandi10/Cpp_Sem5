@@ -1,5 +1,6 @@
 #include <string.h>
 #include <ctype.h>
+#include <iostream> 
 #include "revwords.h"
 
 void reverse_substring(char ss[], int start, int end) 
