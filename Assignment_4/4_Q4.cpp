@@ -1,7 +1,8 @@
 #include <iostream>
 using namespace std;
 
-int main() {
+int main() 
+{
     // Problem 1: Modifying a string literal
     // Original: char *str = "India vs Pakistan, Asia Cup 2023";
     // Fix: Use a modifiable array instead of a string literal
