@@ -2,20 +2,23 @@
 using namespace std;
 
 // Swap function using pointers
-void swapUsingPointers(int* a, int* b) {
+void swapUsingPointers(int* a, int* b)
+{
     int temp = *a;
     *a = *b;
     *b = temp;
 }
 
 // Swap function using references
-void swapUsingReferences(int& a, int& b) {
+void swapUsingReferences(int& a, int& b)
+{
     int temp = a;
     a = b;
     b = temp;
 }
 
-int main() {
+int main() 
+{
     int x = 10, y = 20;
     
     // Swap using pointers
