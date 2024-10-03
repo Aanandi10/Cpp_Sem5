@@ -1,40 +1,59 @@
 #include <iostream>
 
-int main() {
+int main() 
+{
+    // 1. Pointer to a character
+    char ch = 'A';
+    char* ptrToChar = &ch;
+    std::cout << "Pointer to char: " << *ptrToChar << std::endl;
 
-// Declare and initialize the required variables:
+    // 2. Array of 10 integers
+    int intArray[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    std::cout << "Array of 10 integers: ";
+    for (int i = 0; i < 10; i++) 
+    {
+        std::cout << intArray[i] << " ";
+    }
+    std::cout << std::endl;
 
-// Character and pointer to the character:
-   char character = 'B';
-   char* charPtr = &character;
+    // 3. Reference to an array of 10 integers
+    int (&refToArray)[10] = intArray;
+    std::cout << "Reference to array of 10 integers: ";
+    for (int i = 0; i < 10; i++) 
+    {
+        std::cout << refToArray[i] << " ";
+    }
+    std::cout << std::endl;
 
-// Array of 10 integers:
-   int numbers[10] = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+    // 4. Pointer to an array of character strings 
+    const char* strArray[3] = {"Hello", "OOP", "C++"};
+    const char** ptrToStrArray = strArray;
+    std::cout << "Pointer to array of C-strings: " << ptrToStrArray[0] << ", " << ptrToStrArray[1] << ", " << ptrToStrArray[2] << std::endl;
 
-// Reference to the array of 10 integers:
-   int (&arrayRef)[10] = numbers;
+    // 5. Pointer to a pointer to a character
+    char ch2 = 'X';
+    char* ptrToChar2 = &ch2;
+    char** ptrToPtrChar = &ptrToChar2;
+    std::cout << "Pointer to pointer to char: " << **ptrToPtrChar << std::endl;
 
-// Pointer to an array of strings (const char* array):
-   const char* messages[] = {"Welcome", "to", "C++"};
-   const char** msgArrayPtr = messages;
+    // 6. Constant integer
+    const int constInt = 42;
+    std::cout << "Constant integer: " << constInt << std::endl;
 
-// Pointer to a pointer to a character:
-   char* anotherCharPtr = &character;
-   char** doubleCharPtr = &anotherCharPtr;
+    // 7. Pointer to a constant integer
+    const int value = 100;
+    const int* ptrToConstInt = &value;
+    std::cout << "Pointer to constant integer: " << *ptrToConstInt << std::endl;
 
-// Constant integer:
-   const int fixedValue = 100;
+    // 8. Constant pointer to an integer
+    int num = 50;
+    int* const constPtrToInt = &num;
+    std::cout << "Constant pointer to integer: " << *constPtrToInt << std::endl;
 
-// Pointer to a constant integer:
-   const int* ptrToFixedValue = &fixedValue;
+    // 9. Constant pointer to a constant double
+    const double pi = 3.14159;
+    const double* const constPtrToConstDouble = &pi;
+    std::cout << "Constant pointer to constant double: " << *constPtrToConstDouble << std::endl;
 
-// Constant pointer to a non-constant integer:
-   int variable = 25;
-   int* const constantPtrToVariable = &variable;
-
-// Constant pointer to a constant double:
-   const double pi = 3.14159;
-   const double* const constantPtrToConstDouble = &pi;
-
-// The variables are initialized properly with values or references.
+    return 0;
 }
