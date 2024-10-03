@@ -15,11 +15,13 @@ If you pass only one argument, it will be assigned to the first parameter (char)
 parameter (int) will retain its default value.
 If both arguments are provided, the defaults are bypassed and the given values are used.
 */
-void func(char c, int num) {
+void func(char c, int num) 
+{
     cout << "Character: " << c << " | Number: " << num << endl;
 }
 
-int main() {
+int main() 
+{
     func();          // Both parameters use their default values: '*', 45
     func('#');       // First parameter is '#', second uses default 45
     func('#', 10);   // Both parameters use provided values: '#', 10
