@@ -1,43 +1,46 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-// Modified and Rectified Program:
-int main()
-{
-    // Use a modifiable char array instead of a string literal
-    char matchInfo[] = "India vs Pakistan, Asia Cup 2023";
-    matchInfo[7] = 'V';  // Safe modification within a mutable array
-    
-    // Ensure proper array bounds with an additional element
-    double values[] = {3.1, 4.8, 6.2, 0.0};  // Allocating extra space
-    *(values + 3) = 7.7;  // Modify the last element safely
+int main() {
+    // Problem 1: Modifying a string literal
+    // Original: char *str = "India vs Pakistan, Asia Cup 2023";
+    // Fix: Use a modifiable array instead of a string literal
+    char str[] = "India vs Pakistan, Asia Cup 2023";
+    str[7] = 'V';  // Safe to modify since it's now an array
+    cout << "Modified string = " << str << endl;
 
-    // Initialize the extern variable 'h' within the scope
-    float h = 2.5f;  // Example initialization
-    float result = h * 150.75;
+    // Problem 2: Array out of bounds access
+    double darr[] = {2.3, 4.5, 5.5};
+    darr[2] = 6.5;  // Fix: Ensure we modify within the bounds of the array
+    cout << "Updated darr[2] = " << darr[2] << endl;
 
-    // Properly cast void* to short int* to avoid issues
-    short int num = 45;
-    void *voidPtr = &num;
-    short int *shortPtr = static_cast<short int*>(voidPtr);  // Safe typecasting
-    cout << "Short integer = " << *shortPtr;
+    // Problem 3: Use of `extern` without definition
+    // Original: extern float f;  // This would cause a linker error
+    // Fix: Either remove or define `f`
+    float f = 1.5;  // Defining `f` here to avoid the extern issue
+    float g = f * 100.5;
+    cout << "g = " << g << endl;
+
+    // Problem 4: Invalid casting from void* to int*
+    short int i = 89;
+    void *v = &i;  // v points to a short int
+    short int *ip = static_cast<short int*>(v);  // Fix: Proper casting to short int*
+    cout << "integer = " << *ip << endl;
 
     return 0;
 }
 
-/* Explanation of the Changes:
+/*
+Explanation of Changes:
+1. **String Literal Modification**: String literals are stored in read-only memory, so attempting to modify them will cause a runtime error. 
+   - Solution: Declare `str` as a character array, allowing modifications.
+   
+2. **Array Out of Bounds**: The original program attempted to access an out-of-bounds element of `darr[]`, which causes undefined behavior.
+   - Solution: Modify an element within the valid index range.
 
-1. **Modifiable Character Array:**
-   - Changed `str` to `matchInfo` and modified the string content safely using a mutable array.
+3. **Use of `extern` without Definition**: The original program declared `extern float f;` but never defined `f`, causing a linker error.
+   - Solution: Define the variable `f` within the program.
 
-2. **Array Bounds Handling:**
-   - Updated the `darr` array to `values[]` and ensured that the array has a valid fourth element, avoiding out-of-bounds access.
-
-3. **Initialization of Extern Variable:**
-   - `float f` was changed to `float h`, and it's initialized safely within the program's scope before use.
-
-4. **Safe Typecasting:**
-   - Updated the typecasting to ensure the proper casting from `void*` to `short int*` (`shortPtr`) to avoid undefined behavior.
-
-This version of the program eliminates potential runtime errors and handles the memory and type safety issues effectively.
+4. **Invalid Casting from `void*` to `int*`**: The original program tried to cast a `void*` holding a `short int` address to an `int*`, which leads to invalid memory access due to size differences.
+   - Solution: Properly cast the `void*` back to a `short int*` before dereferencing it.
 */
