@@ -2,35 +2,44 @@
 
 int main()
 {
-    const char* sourceStr = "C++ programming is fun!\n";
-    char destinationStr[100];
-    char* destPtr = destinationStr;  // Array name decays to a pointer to the first element
-    while(*destPtr++ = *sourceStr++) {}  // Copy each character from source to destination
-    std::cout << destinationStr;
+    // Declare a pointer to a constant C-style string
+    const char* str1 = "We love C++ programming\n";  // Points to a string literal stored in read-only memory
+    
+    // Declare an uninitialized character array with 100 elements
+    char str2[100];  // This will store a copy of the string from str1
+
+    // Declare a pointer 'p' and initialize it to point to the first element of str2
+    char *p = str2;  // 'p' points to str2[0], the start of the array
+    
+    // Copy the string from str1 to str2 using a while loop
+    // The loop continues until the null terminator '\0' is copied
+    while(*p++ = *str1++){}
+
+    // Output the contents of str2, which now holds a copy of the string from str1
+    std::cout << str2;  // Prints "We love C++ programming" followed by a newline
+
+    return 0;
 }
 
 /*
-The output of the program is: C++ programming is fun!
+Explanation of the output:
 
-#Explanation:
+1. The string "We love C++ programming\n" is pointed to by 'str1'.
+   It includes the newline character '\n' at the end.
 
-1. **Pointer to String:**
-   const char* sourceStr = "C++ programming is fun!\n";
-   - `sourceStr` is a pointer to a string literal stored in read-only memory. It points to the first character, `'C'`, in the string `"C++ programming is fun!\n"`.
+2. A character array 'str2' is declared with enough space (100 elements) to store the copied string.
 
-2. **Character Array Declaration:**
-   char destinationStr[100];
-   - `destinationStr` is an array of 100 characters, which will store the copied version of the string.
+3. A pointer 'p' is used to point to the start of the array 'str2'. 
+   The pointer 'str1' and 'p' move through their respective arrays 
+   and copy the characters one by one until the null terminator '\0' is reached.
 
-3. **Pointer Initialization:**
-   char* destPtr = destinationStr;
-   - `destPtr` points to the first element of `destinationStr`. The array name `destinationStr` decays into a pointer to its first element, meaning `destPtr` now references `destinationStr[0]`.
+4. Once the null terminator '\0' is copied, the loop stops, and 'str2' contains the 
+   entire string "We love C++ programming\n" followed by the null terminator '\0'.
 
-4. **Character Copying (Loop):**
-   while(*destPtr++ = *sourceStr++) {}
-   - This loop copies characters one by one from `sourceStr` to `destinationStr`:
-     - `*sourceStr` refers to the current character in the string, and `*destPtr` refers to the current position in the destination array.
-     - `*destPtr++ = *sourceStr++` copies the character from `sourceStr` to `destinationStr`, then both pointers increment to the next character.
-     - The loop continues until the null terminator (`'\0'`) is copied, at which point the loop stops.
+5. The 'std::cout' statement then prints the string stored in 'str2', 
+   which is the same as the string originally pointed to by 'str1'.
+
+6. The final output will be:
+   We love C++ programming
+   (followed by a newline due to '\n' in the original string).
 */
-
