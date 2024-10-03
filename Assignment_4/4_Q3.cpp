@@ -1,19 +1,22 @@
 #include <iostream>
 
-const char* createString() {
+const char* createString()
+{
     // This function works correctly because the string literal "Practice makes a man perfect"
     // is stored in a read-only section of memory and returns a pointer to that string.
     return "Practice makes a man perfect";
 }
 
-int createInt() {
+int createInt() 
+{
     int x = 100;
     // The integer value x is returned by value. This avoids the issue of returning a pointer
     // to a local variable, which would result in undefined behavior.
     return x;  // Return the integer value instead of its address
 }
 
-int main() {
+int main()
+{
     // Calling createString() returns a pointer to a string literal.
     // The string literal has static storage duration and remains valid throughout the program's execution.
     const char *str = createString();
