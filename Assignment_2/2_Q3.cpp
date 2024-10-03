@@ -3,25 +3,30 @@ using namespace std;
 
 int globalCounter = 0;  // Global variable to track call count
 
-void trackGlobalCalls() {
+void trackGlobalCalls()
+{
     globalCounter++;
     cout << "Global: I have been called " << globalCounter << " times" << endl;
 }
 
-void trackStaticCalls() {
+void trackStaticCalls()
+{
     static int staticCounter = 0;  // Static variable to track call count, limited to this function's scope
     staticCounter++;
     cout << "Static:  I have been called " << staticCounter << " times" << endl;
 }
 
-int main() {
+int main()
+{
     cout << "Invoking the Global Call Tracker:" << endl;
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 10; i++)
+    {
         trackGlobalCalls();
-    }
+     }
 
     cout << "\nInvoking the Static Call Tracker:" << endl;
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 10; i++) 
+    {
         trackStaticCalls();
     }
 
