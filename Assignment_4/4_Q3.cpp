@@ -1,17 +1,20 @@
 #include <iostream>
 
 // Function returning a string literal (valid)
-const char* generateString() {
+const char* generateString()
+{
     return "Consistency leads to success";
 }
 
 // Function returning an invalid pointer (to a local variable)
-int* generateInt() {
+int* generateInt()
+{
     int num = 500;
     return &num;  // Warning: returning address of a local variable
 }
 
-int main() {
+int main() 
+{
     const char *message = generateString();
     std::cout << "Message = " << message << std::endl;
 
@@ -25,7 +28,8 @@ int main() {
 
 Message = Consistency leads to success
 
-#Explanation:
+/* 
+    #Explanation:
 
 1) No issue in the `generateString()` function:
    - String literals like `"Consistency leads to success"` have static storage duration, so they remain valid for the entire program's execution.
@@ -41,7 +45,7 @@ Message = Consistency leads to success
 - To fix this, we should either:
   1. Return the variable by value instead of returning a pointer to it.
   2. Use dynamic memory allocation (`new` or `malloc`).
-
+/*
 Corrected `generateInt()` function:
 ```cpp
 int generateInt() {
