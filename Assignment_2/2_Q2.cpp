@@ -29,12 +29,14 @@ int addition(int a, int b)
     return a + b;
 }
 
-int multiplication(int a, int b) {
+int multiplication(int a, int b)
+{
     return a * b;
 }
 
 // A function that takes a function reference as an argument
-int operate(rifii operation, int x, int y) {
+int operate(rifii operation, int x, int y) 
+{
     return operation(x, y);
 }
 
