@@ -28,7 +28,7 @@ int main()
     // 4. Pointer to an array of character strings 
     const char* strArray[3] = {"Hello", "OOP", "C++"};
     const char** ptrToStrArray = strArray;
-    std::cout << "Pointer to array of C-strings: " << ptrToStrArray[0] << ", " << ptrToStrArray[1] << ", " << ptrToStrArray[2] << std::endl;
+    std::cout << "Pointer to array of Character strings: " << ptrToStrArray[0] << ", " << ptrToStrArray[1] << ", " << ptrToStrArray[2] << std::endl;
 
     // 5. Pointer to a pointer to a character
     char ch2 = 'X';
