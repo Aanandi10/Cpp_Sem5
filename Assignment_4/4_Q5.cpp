@@ -1,30 +1,36 @@
 #include <iostream>
 using namespace std;
 
-// Function to swap two integers using pointers
-void exchange(int* first, int* second) {
-    int tempVar = *first;
-    *first = *second;
-    *second = tempVar;
+// Swap function using pointers
+void swapUsingPointers(int* a, int* b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+// Swap function using references
+void swapUsingReferences(int& a, int& b) {
+    int temp = a;
+    a = b;
+    b = temp;
 }
 
 int main() {
-    int num1, num2;
-
-    // Taking input from the user
-    cout << "Enter the first number: ";
-    cin >> num1;
-    cout << "Enter the second number: ";
-    cin >> num2;
-
-    // Display numbers before the swap
-    cout << "Before exchange: num1 = " << num1 << ", num2 = " << num2 << endl;
+    int x = 10, y = 20;
     
-    // Call the swap function
-    exchange(&num1, &num2);  // Pass the addresses of num1 and num2
-    
-    // Display numbers after the swap
-    cout << "After exchange: num1 = " << num1 << ", num2 = " << num2 << endl;
+    // Swap using pointers
+    cout << "Before swap (using pointers): x = " << x << ", y = " << y << endl;
+    swapUsingPointers(&x, &y);  // Pass the addresses of x and y
+    cout << "After swap (using pointers): x = " << x << ", y = " << y << endl;
+
+    // Reinitialize x and y for the next test
+    x = 10;
+    y = 20;
+
+    // Swap using references
+    cout << "\nBefore swap (using references): x = " << x << ", y = " << y << endl;
+    swapUsingReferences(x, y);  // Pass x and y by reference
+    cout << "After swap (using references): x = " << x << ", y = " << y << endl;
 
     return 0;
 }
