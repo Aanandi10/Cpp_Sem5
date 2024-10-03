@@ -34,3 +34,16 @@ The local variable x is stored on the stack and is destroyed once the function c
 This function works because string literals have static storage duration, meaning the string exists for the lifetime of the program. 
 There are no issues here.
 /*
+/*
+    Output Explanation:
+- When you call createString(), it returns a pointer to the string literal "Practice makes a man perfect".
+  This string is stored in a read-only section of memory and remains valid throughout the program's execution.
+  Therefore, the line `std::cout << "string = " << str << std::endl;` outputs:
+  string = Practice makes a man perfect
+
+- When you call createInt(), it returns a pointer to the local variable x.
+  However, since x is a local variable, it goes out of scope as soon as createInt() returns.
+  Consequently, when you attempt to dereference *ip in the line `std::cout << "integer = " << *ip << std::endl;`, 
+  you are accessing memory that has been deallocated, leading to undefined behavior.
+  The program might crash, produce garbage values, or even work incorrectly, as the behavior is unpredictable.
+*/
