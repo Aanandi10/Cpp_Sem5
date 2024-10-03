@@ -1,81 +1,99 @@
 #include <iostream>
-#include <string>
 #include <stack>
-
+#include <string>
 using namespace std;
 
-class Expr{
-	private:
-	string expression;
-	int precedence(char op){
-		if(op=='+'||op=='-') return 1;
-		if(op=='*'||op=='/') return 2;
-		return 0;
-	}
-	
-	int applyOp(int a, int b, char op){
-		switch(op){
-			case '+': return a+b;
-			case '-': return a-b;
-			case '*': return a*b;
-			case '/': return a/b;
-			default: return 0;
-		}
-	}
-	
-	string toPostfix(){
-		stack<char> operators;
-		string output;
-		for(char token: expression){
-			if(isdigit(token)){
-				output += token;
-				output += ' ';
-			}else if(token == '+'||token == '-'||token == '*'||token == '/'){
-				while(!operators.empty() && precedence(operators.top())>=precedence(token)){
-					output += operators.top();
-					output += ' ';
-					operators.pop();
-				}
-				operators.push(token);
-			}
-		}
-		while(!operators.empty()){
-			output += operators.top();
-			output += ' ';
-			operators.pop();
-		}
-		return output;
-	}
+// Expr class definition
+class Expr 
+{
+    string expression;  // stores the input expression
 
-	int evalPostfix(const string& postfix){
-		stack<int> values;
-		for(int i=0;i<postfix.length();i++){
-			char token = postfix[i];
-			if(isdigit(token)){
-				values.push(token - '0');
-			}else if(token == '+'||token == '-'||token == '*'||token == '/'){
-				int b = values.top(); values.pop();
-				int a = values.top(); values.pop();
-				values.push(applyOp(a,b,token));
-			}
-		}
-		return values.top();
-	}
+    // Function to evaluate based on operator precedence
+    int applyOp(char op, int a, int b) 
+  {
+        switch (op)
+	{
+            case '+': return a + b;
+            case '-': return a - b;
+            case '*': return a * b;
+            case '/': return a / b;
+        }
+        return 0;
+   }
 
-	public:
-	Expr(const char* expr) : expression(expr){}
-	int eval(){
-		string postfix = toPostfix();
-		return evalPostfix(postfix);
-	}
-	void print(){
-		cout<<expression<<endl;
-	}
+    // Function to determine precedence of operators
+    int precedence(char op) 
+    {
+        if (op == '+' || op == '-') return 1;
+        if (op == '*' || op == '/') return 2;
+        return 0;
+    }
+
+public:
+    // Constructor to store the expression
+    Expr(const char* expr) : expression(expr) {}
+
+    // Function to evaluate the expression
+    int eval()
+    {
+        stack<int> values;  // Stack to store numbers
+        stack<char> ops;    // Stack to store operators
+
+        for (size_t i = 0; i < expression.length(); i++)
+	{
+            // If current character is a digit, push it to values stack
+            if (isdigit(expression[i]))
+	    {
+                values.push(expression[i] - '0');
+            }
+            // If current character is an operator
+            else if (expression[i] == '+' || expression[i] == '-' || expression[i] == '*' || expression[i] == '/')
+	    {
+                // While top of 'ops' has the same or greater precedence, apply operator to values
+                while (!ops.empty() && precedence(ops.top()) >= precedence(expression[i])) 
+		{
+                    int val2 = values.top();
+                    values.pop();
+                    int val1 = values.top();
+                    values.pop();
+                    char op = ops.top();
+                    ops.pop();
+                    values.push(applyOp(op, val1, val2));
+                }
+                // Push current operator to 'ops'
+                ops.push(expression[i]);
+            }
+        }
+
+        // Apply remaining operators to remaining values
+        while (!ops.empty()) 
+	{
+            int val2 = values.top();
+            values.pop();
+            int val1 = values.top();
+            values.pop();
+            char op = ops.top();
+            ops.pop();
+            values.push(applyOp(op, val1, val2));
+        }
+
+        // Top of 'values' contains the result of the expression
+        return values.top();
+    }
+
+    // Function to print the expression
+    void print()
+    {
+        cout << "Expression: " << expression << endl;
+    }
 };
 
-int main(){
-	Expr x("8/4+3*4-3");
-	cout<<"x = "<<x.eval()<<endl;
-	x.print();
-	return 0;
+int main() 
+{
+    Expr x("8/4+3*4-3");
+    
+    cout << "x = " << x.eval() << "\n";
+    x.print();
+
+    return 0;
 }
