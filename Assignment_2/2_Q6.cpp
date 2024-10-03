@@ -46,3 +46,10 @@ int main() {
 
     return 0;
 }
+
+
+/*
+sort2 function implements selection sort for strings.
+It uses the strcmp function to compare two C-style strings (char*), returning a negative value if the first string is lexicographically smaller than the second.
+It finds the smallest string in the remaining unsorted portion and swaps it with the current position.
+*/
