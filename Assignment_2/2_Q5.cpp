@@ -17,13 +17,19 @@ is sufficient for the compiler to determine the position of each element.
 
 
 
-void f1(int m[][5], int dim1) {
+void f1(int m[][5], int dim1) 
+{
     for(unsigned int i = 0; i < dim1; i++)
+        {
         for(unsigned int j = 0; j < 5; j++)
-            m[i][j] = m[i][j] + 2;  // Increment each element by 2
+            {
+               m[i][j] = m[i][j] + 2;  // Increment each element by 2
+            }
+        }
 }
 
-int main() {
+int main()
+{
     // Initialize a 2D array.
     int m[3][5] = {{1, 2, 3, 4, 5}, {11, 12, 13, 14, 15}, {21, 22, 23, 34, 25}};
     
@@ -31,9 +37,10 @@ int main() {
     f1(m, 3);
     
     // Print the modified array.
-    for(unsigned int i = 0; i < 3; i++) {
+    for(unsigned int i = 0; i < 3; i++)
+    {
         for(unsigned int j = 0; j < 5; j++)
             std::cout << m[i][j] << " ";
         std::cout << "\n";
-    }
+     }
 }
