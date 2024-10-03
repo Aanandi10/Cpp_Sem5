@@ -2,29 +2,41 @@
 #include <cstring>
 
 // Selection sorting algorithm for integers
-void sort1(int *a, int n) {
+void sort1(int *a, int n)
+{
     for (unsigned int i = 0; i < n; i++)
-        for (unsigned int j = i + 1; j < n; j++)
-            if (a[i] > a[j])
-                std::swap(a[i], a[j]);
+        {
+           for (unsigned int j = i + 1; j < n; j++)
+               {
+                  if (a[i] > a[j])
+                   std::swap(a[i], a[j]);
+               }
+        }
 }
 
 // Selection sorting algorithm for strings
-void sort2(char *a[], int n) {
-    for (unsigned int i = 0; i < n; i++) {
+void sort2(char *a[], int n)
+{
+    for (unsigned int i = 0; i < n; i++)
+        {
         unsigned int minIndex = i;
-        for (unsigned int j = i + 1; j < n; j++) {
-            if (std::strcmp(a[j], a[minIndex]) < 0) {
+        for (unsigned int j = i + 1; j < n; j++)
+            {
+              if (std::strcmp(a[j], a[minIndex]) < 0) 
+              {
                 minIndex = j;
+              }
             }
-        }
-        if (minIndex != i) {
+        
+        if (minIndex != i) 
+        {
             std::swap(a[i], a[minIndex]);
         }
     }
 }
 
-int main() {
+int main() 
+{
     int a[] = {-2, 3, 8, 10, 7, 56, 90};
     char* str[] = {"hello", "world", "iacs", "raining"};
 
