@@ -6,7 +6,8 @@ class Tiny
     char v; // 6-bit non-negative integer, stored in a char
 
     // Range-check and assign function
-    void assign(int i) {
+    void assign(int i) 
+   {
         if (i & ~077) // Check if i is within the 6-bit range (0 to 63)
             throw Bad_range();
         v = i;
