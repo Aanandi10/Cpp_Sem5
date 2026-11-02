@@ -1,1 +1,1 @@
-This contains all the programs of C++ that I have done in 5th Semester.
+This repository contains a record of the code files of the different algorithms, I have implemented in C++ during my Programming in C++ Lab course while pursuing CS major at Indian Association for the Cultivation of Science, Kolkata.
